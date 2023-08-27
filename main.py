@@ -17,27 +17,35 @@ data = db[cli]
 
 url = "https://discord.com/api/v9/channels/1144174264128389181/messages"
 
-while True:
-    dat = data.find_one({'cli':cli})
-    if dat:
-        for aut in dat['auths']:
-            try:
-                d2 = data.find_one({'xyz':auth})
-                if d2:
-                    last = d2['last_time'] + 7200
-                    current_time = time.time()
-                    if current_time >= last:
-                        auth = {'authorization':aut}
-                        msg = {'content':'!work'}
-                        requests.post(url,headers=auth,data=msg)
-                        data.update_one({'xyz':auth},{'$set':{'last_time':current_time}})
-                else:
+def main():
+    while True:
+        dat = data.find_one({'cli':cli})
+        if dat:
+            for aut in dat['auths']:
+                try:
                     auth = {'authorization':aut}
                     msg = {'content':'!work'}
                     requests.post(url,headers=auth,data=msg)
-                    data.update_one({'xyz':auth},{'$set':{'last_time':current_time}},upsert=True)
-            except Exception as e:
-                print(e)
-                continue
-            time.sleep(10)
-    time.sleep(60)
+                    time.sleep(10)
+                except Exception:
+                    continue
+        time.sleep(7200)
+
+def main2():
+    while True:
+        dat = data.find_one({'cli':cli})
+        if dat:
+            for aut in dat['auths']:
+                try:
+                    auth = {'authorization':aut}
+                    msg = {'content':'!daily'}
+                    requests.post(url,headers=auth,data=msg)
+                    time.sleep(10)
+                except Exception:
+                    continue
+        time.sleep(86400)
+
+time_thread = threading.Thread(target=main2)
+time_thread.start()
+
+main()
