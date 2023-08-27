@@ -1,9 +1,8 @@
-import requests
 from pymongo import MongoClient
 import time
 import threading
 from config import Your_data_base
-
+import requests
 password = 'QRFfsca9UaLUH9H2'
 cluster_url = 'mongodb+srv://uchisasuke468:' + \
     password + '@cluster0.byr4qsl.mongodb.net/'
