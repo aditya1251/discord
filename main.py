@@ -17,22 +17,22 @@ data = db[cli]
 
 url = "https://discord.com/api/v9/channels/1144174264128389181/messages"
 
-def main2():
-    while True:
-        dat = data.find_one({'cli':cli})
-        if dat:
-            for aut in dat['auths']:
-                try:
-                    auth = {'authorization':aut}
-                    msg = {'content':'!daily'}
-                    requests.post(url,headers=auth,data=msg)
-                    time.sleep(10)
-                except Exception:
-                    continue
-        time.sleep(86400)
+# def main2():
+#     while True:
+#         dat = data.find_one({'cli':cli})
+#         if dat:
+#             for aut in dat['auths']:
+#                 try:
+#                     auth = {'authorization':aut}
+#                     msg = {'content':'!daily'}
+#                     requests.post(url,headers=auth,data=msg)
+#                     time.sleep(10)
+#                 except Exception:
+#                     continue
+#         time.sleep(86400)
 
-time_thread = threading.Thread(target=main2)
-time_thread.start()
+# time_thread = threading.Thread(target=main2)
+# time_thread.start()
 
 while True:
     dat = data.find_one({'cli':cli})
