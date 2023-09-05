@@ -20,7 +20,7 @@ data = db[cli]
 url = "https://discord.com/api/v9/channels/1144174264128389181/messages"
 
 def main2():
-    time.sleep(86400)
+    time.sleep(46400)
     while True:
         dat = data.find_one({'cli':cli})
         if dat:
@@ -60,13 +60,12 @@ def main3():
                 except Exception:
                     continue
                 time.sleep(5)
-        time.sleep(600)
+        time.sleep(3600)
 
 time_thread = threading.Thread(target=main3)
 time_thread.start()
 
 while True:
-    time.sleep(7200)
     dat = data.find_one({'cli':cli})
     if dat:
         for aut in dat['auths']:
