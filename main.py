@@ -37,34 +37,34 @@ def main2():
 time_thread = threading.Thread(target=main2)
 time_thread.start()
 
-def main3():
-    time.sleep(1800)
-    while True:
-        dat = data.find_one({'cli':cli})
-        if dat:
-            for aut in dat['auths']:
-                try:
-                    auth = {'authorization':aut}
-                    msg = {'content':'!guess 10'}
-                    requests.post(url,headers=auth,data=msg)
-                except Exception:
-                    continue
-            i = 1
-            while i <= 5:  
-                for aut in dat['auths']:
-                    smsg2 = str(random.randrange(1,100))
-                    try:
-                        auth = {'authorization':aut}
-                        msg = {'content':smsg2}
-                        requests.post(url,headers=auth,data=msg)
-                    except Exception:
-                        pass
-                i += 1
-                time.sleep(62)
-        time.sleep(3600)
+# def main3():
+#     time.sleep(1800)
+#     while True:
+#         dat = data.find_one({'cli':cli})
+#         if dat:
+#             for aut in dat['auths']:
+#                 try:
+#                     auth = {'authorization':aut}
+#                     msg = {'content':'!guess 10'}
+#                     requests.post(url,headers=auth,data=msg)
+#                 except Exception:
+#                     continue
+#             i = 1
+#             while i <= 5:  
+#                 for aut in dat['auths']:
+#                     smsg2 = str(random.randrange(1,100))
+#                     try:
+#                         auth = {'authorization':aut}
+#                         msg = {'content':smsg2}
+#                         requests.post(url,headers=auth,data=msg)
+#                     except Exception:
+#                         pass
+#                 i += 1
+#                 time.sleep(62)
+#         time.sleep(3600)
 
-time_thread = threading.Thread(target=main3)
-time_thread.start()
+# time_thread = threading.Thread(target=main3)
+# time_thread.start()
 
 while True:
     time.sleep(12600)
