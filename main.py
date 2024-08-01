@@ -1,41 +1,45 @@
-from pymongo import MongoClient
-import time
-import threading
-from config import Your_data_base
+# from pymongo import MongoClient
+# import time
+# import threading
+# from config import Your_data_base
 import requests
 import random
 
-password = 'QRFfsca9UaLUH9H2'
-cluster_url = 'mongodb+srv://uchisasuke468:' + \
-    password + '@cluster0.byr4qsl.mongodb.net/'
+# password = 'QRFfsca9UaLUH9H2'
+# cluster_url = 'mongodb+srv://uchisasuke468:' + \
+#     password + '@cluster0.byr4qsl.mongodb.net/'
 
-client = MongoClient(cluster_url)
+# client = MongoClient(cluster_url)
 
-db = client['BNSL']
+# db = client['BNSL']
 
-cli = Your_data_base
+# cli = Your_data_base
 
-data = db[cli]
+# data = db[cli]
 
-url = "https://discord.com/api/v9/channels/1144174264128389181/messages"
+url = "https://discord.com/api/v9/channels/1208474261992378428/messages"
 
-def main2():
-    time.sleep(46400)
-    while True:
-        dat = data.find_one({'cli':cli})
-        if dat:
-            for aut in dat['auths']:
-                try:
-                    auth = {'authorization':aut}
-                    msg = {'content':'!daily'}
-                    requests.post(url,headers=auth,data=msg)
-                    time.sleep(10)
-                except Exception:
-                    continue
-        time.sleep(86400)
+msg_list = ['Go',"gpoo","lfg","dont loose hope in sir","keep grinding","need to be active to reach level 11","go to moon","thats amazing","i think everyone has been participating long time"]
 
-time_thread = threading.Thread(target=main2)
-time_thread.start()
+auths = ['MTAxODUwOTgxMjc0NjY5MDY5Ng.GgG2yI.xQp0JNhSiUCFDqNx2nYMRxSmW_QQaGF5Da2JPs','MTAzNDcyNDE1ODAyMzY2MzYxNg.GhudA7.Z7fwQpvTaSWonFdWhATS680aXkm2YPKWogMj_M']
+
+# def main2():
+#     time.sleep(46400)
+#     while True:
+#         dat = data.find_one({'cli':cli})
+#         if dat:
+#             for aut in dat['auths']:
+#                 try:
+#                     auth = {'authorization':aut}
+#                     msg = {'content':'!daily'}
+#                     requests.post(url,headers=auth,data=msg)
+#                     time.sleep(10)
+#                 except Exception:
+#                     continue
+#         time.sleep(86400)
+
+# time_thread = threading.Thread(target=main2)
+# time_thread.start()
 
 # def main3():
 #     time.sleep(1800)
@@ -67,16 +71,11 @@ time_thread.start()
 # time_thread.start()
 
 while True:
-    time.sleep(12600)
-    dat = data.find_one({'cli':cli})
-    if dat:
-        for aut in dat['auths']:
-            try:
-                auth = {'authorization':aut}
-                msg = {'content':'!work'}
-                requests.post(url,headers=auth,data=msg)
-                time.sleep(10)
-            except Exception:
-                continue
-    time.sleep(14400)
+    for aut in auths:
+        try:
+            auth = {'authorization':aut}
+            msg = {'content': random.choice(msg_list)}
+            requests.post(url,headers=auth,data=msg)
+        except Exception:
+            continue
 
